@@ -3,14 +3,14 @@
  * provided for you by firebase after creating your project!
 */
 const firebaseConfig = {
-    apiKey: "AIzaSyAHsROXxwLVhZlZZp12dXfKF-UHZiw0RMA",
-    authDomain: "fire-message-f6d06.firebaseapp.com",
-    projectId: "fire-message-f6d06",
-    storageBucket: "fire-message-f6d06.appspot.com",
-    messagingSenderId: "1095580247961",
-    appId: "1:1095580247961:web:d180ef10246d6eab559508",
-    measurementId: "G-TR0HJ2LSR2"
-  };
+  apiKey: "AIzaSyBdbhJQPNm76aer7EP1stsHr9Nto_8QB1g",
+  authDomain: "firemessage-1f5e1.firebaseapp.com",
+  projectId: "firemessage-1f5e1",
+  storageBucket: "firemessage-1f5e1.appspot.com",
+  messagingSenderId: "881216404348",
+  appId: "1:881216404348:web:4440c7d65f084feb7482f9",
+  measurementId: "G-P8HPYQFG1X"
+};
 
 // initialize the firebase app with this built-in function
 firebase.initializeApp(firebaseConfig);

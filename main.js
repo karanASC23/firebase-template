@@ -1,7 +1,7 @@
 /**
  * @TODO get a reference to the Firebase Database object
  */
-
+const database = firebase.database().ref();
 /**
  * @TODO get const references to the following elements:
  *      - div with id #all-messages
@@ -10,7 +10,11 @@
  *      - button with id #send-btn and the updateDB
  *        function as an onclick event handler
  */
-
+const allMessagesDiv = document.getElementById('all-messages');
+const userNameInput = document.getElementById("username");
+const messageInput = document.getElementById('message');
+const sendButton = document.getElementById('send-btn');
+sendButton.onclick = updateDB;
 /**
  * @TODO create a function called updateDB which takes
  * one parameter, the event, that:
@@ -23,8 +27,20 @@
  */
 function updateDB(event) {
     // prevents the page from refreshing
-
+    event.preventDefault();
     // create an object with the data we want to add to our database
+    const username = userNameInput.value;
+    const message = messageInput.value;
+
+    const messageData = {
+        USERNAME: username,
+        MESSAGE: message
+    }
+    console.log(messageData)
+
+    database.push(messageData)
+
+    messageInput.value = ""
 }
 
 /**
@@ -33,7 +49,7 @@ function updateDB(event) {
  * object
  */
 // called one time for each row in database on page load and each entry
-
+database.on('child_added', addMessage)
 /**
  * @TODO create a function called addMessageToBoard that
  * takes one parameter rowData which:
@@ -46,6 +62,16 @@ function updateDB(event) {
  */
 function addMessage(rowData) {
     // gets the value in the database row
+    const row = rowData.val()
+
+    const name = row.USERNAME;
+    const message = row.MESSAGE;
+
+    console.log('Name: ',name,"Message:",message)
+
+    const messageDiv = makeSingleMessageHTML(name,message)
+
+    allMessagesDiv.appendChild(messageDiv)
 }
 
 /** 
@@ -67,10 +93,14 @@ function addMessage(rowData) {
  */
 function makeSingleMessageHTML(usernameTxt, messageTxt) {
     // creates a parent div to hold entire username + message line
-
+    const parentDiv = document.createElement('div');
+    const messageP = document.createElement('p');
     // update the inner HTML to include the username
-
+    messageP.innerHTML = usernameTxt + ':' + messageTxt;
     // adds the message
+    parentDiv.appendChild(messageP);
+
+    return parentDiv;
 }
 
 /**
